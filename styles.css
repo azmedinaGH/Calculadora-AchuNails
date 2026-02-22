@@ -40,23 +40,12 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 .decoration-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 0.5rem; /* Achicamos un poco el espacio entre cajas */
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0.75rem;
 }
-
 @media (max-width: 640px) {
   .decoration-grid {
-    /* El minmax(0, 1fr) es el truco mágico que evita que se desborde */
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  
-  /* Ajustamos un pelín los textos y botones internos solo para celular */
-  .decoration-grid span {
-    font-size: 0.75rem; /* Textos apenas más chicos para que entren */
-    white-space: normal; /* Permite que el texto baje a otra línea si es muy largo */
-  }
-  .decoration-grid button {
-    padding: 0.25rem 0.5rem; /* Botones apenas más chicos */
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 #summary-image-export {
