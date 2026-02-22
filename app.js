@@ -127,21 +127,26 @@ function renderDecorations() {
     const count = state.decorationCounts[dec.id] || 0;
     const isAllSelected = count === 10;
     return `
-      <div class="bg-white/70 p-3 rounded-xl border border-baby-pink">
-        <div class="flex items-center justify-between mb-2">
-          <span class="text-sm font-medium text-deep-pink">${dec.emoji} ${dec.name}</span>
-          <span class="text-xs font-semibold text-glam-pink">${formatPrice(dec.price)}/uña</span>
+      <div class="bg-white/70 p-3 rounded-xl border border-baby-pink flex flex-col justify-between h-full">
+        
+        <div class="flex items-start justify-between mb-3 flex-wrap gap-1">
+          <span class="text-sm font-medium text-deep-pink leading-tight">${dec.emoji} ${dec.name}</span>
+          <span class="text-xs font-semibold text-glam-pink whitespace-nowrap">${formatPrice(dec.price)}/uña</span>
         </div>
-        <div class="flex items-center justify-between">
-          <div class="flex items-center space-x-2">
-            <button onclick="updateDecoration('${dec.id}', -1)" class="w-7 h-7 rounded-full bg-baby-pink text-deep-pink font-bold hover:bg-rose-gold hover:text-white transition-all">-</button>
-            <span class="w-6 text-center font-semibold text-deep-pink">${count}</span>
-            <button onclick="updateDecoration('${dec.id}', 1)" class="w-7 h-7 rounded-full bg-baby-pink text-deep-pink font-bold hover:bg-rose-gold hover:text-white transition-all">+</button>
+        
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-3 mt-auto">
+          
+          <div class="flex items-center justify-center space-x-4 w-full sm:w-auto">
+            <button onclick="updateDecoration('${dec.id}', -1)" class="w-8 h-8 rounded-full bg-baby-pink text-deep-pink font-bold hover:bg-rose-gold hover:text-white transition-all flex items-center justify-center text-lg">-</button>
+            <span class="w-6 text-center font-semibold text-deep-pink text-lg">${count}</span>
+            <button onclick="updateDecoration('${dec.id}', 1)" class="w-8 h-8 rounded-full bg-baby-pink text-deep-pink font-bold hover:bg-rose-gold hover:text-white transition-all flex items-center justify-center text-lg">+</button>
           </div>
+          
           <button onclick="selectAllNails('${dec.id}')" 
-                  class="text-xs px-2 py-1 rounded-full transition-all ${isAllSelected ? 'bg-glam-pink text-white' : 'bg-soft-pink text-deep-pink hover:bg-baby-pink'}">
+                  class="w-full sm:w-auto text-xs font-semibold px-4 py-2 rounded-full transition-all ${isAllSelected ? 'bg-glam-pink text-white shadow-md' : 'bg-soft-pink text-deep-pink border border-baby-pink hover:bg-baby-pink'}">
             ${isAllSelected ? '✓ 10 uñas (-15%)' : 'Todas'}
           </button>
+          
         </div>
       </div>
     `;
