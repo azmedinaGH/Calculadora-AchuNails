@@ -52,7 +52,8 @@ input[type="number"]::-webkit-outer-spin-button {
   background: white;
   padding: 2rem;
   border-radius: 1.5rem;
-  max-width: 500px;
+  width: 650px; /* Le damos un ancho fijo para obligar a que sea apaisado */
+  max-width: none; /* Le sacamos el límite para que el celular no lo achique */
   margin: 2rem auto;
 }
 #summary-image-export h1 {
