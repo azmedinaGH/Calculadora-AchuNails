@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="es" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AchuNails - Calculadora de Precios</title>
+  <link rel="icon" type="image/png" href="../img/achunailslogo3.png">
+  
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'baby-pink': '#FFD6E0',
+            'soft-pink': '#FFF0F3',
+            'rose-gold': '#E8B4B8',
+            'deep-pink': '#C9929A',
+            'glam-pink': '#FF85A1'
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body class="h-full bg-gradient-to-br from-soft-pink via-white to-baby-pink overflow-auto">
+  <button onclick="abrirMenuLateral()" class="fixed top-4 left-4 z-40 bg-white/80 backdrop-blur-md p-3 rounded-full shadow-md text-deep-pink hover:bg-baby-pink transition-all md:top-6 md:left-6 focus:outline-none">
+    <span class="text-2xl leading-none">≡</span>
+  </button>
+  <div class="w-full min-h-full p-4 md:p-8">
+    <div class="max-w-4xl mx-auto">
+      
+      <header class="text-center mb-8">
+        <div class="mb-4">
+          <img src="../img/achunailslogo2.png" alt="Logo AchuNails" class="h-24 mx-auto object-contain rounded-full shadow-md">
+        </div>
+        <h1 id="salon-name" class="brand-title text-4xl md:text-5xl font-bold bg-gradient-to-r from-glam-pink to-deep-pink bg-clip-text text-transparent">Achu Nails</h1>
+        <p id="tagline" class="text-deep-pink mt-2 text-lg"> 🌸Hecho a medida para brindar belleza con precisión🌸</p>
+      </header>
+
+      <div class="flex justify-center mb-8">
+        <div class="flex items-center space-x-2 md:space-x-4">
+          <button onclick="goToStep(1)" class="step-indicator flex items-center space-x-2 px-3 py-2 rounded-full transition-all" data-step="1"> <span class="w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold">1</span> <span class="hidden md:inline text-sm">Técnica</span> </button>
+          <div class="w-8 h-0.5 bg-baby-pink"></div>
+          <button onclick="goToStep(2)" class="step-indicator flex items-center space-x-2 px-3 py-2 rounded-full transition-all" data-step="2"> <span class="w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold">2</span> <span class="hidden md:inline text-sm">Decoraciones</span> </button>
+          <div class="w-8 h-0.5 bg-baby-pink"></div>
+          <button onclick="goToStep(3)" class="step-indicator flex items-center space-x-2 px-3 py-2 rounded-full transition-all" data-step="3"> <span class="w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold">3</span> <span class="hidden md:inline text-sm">Extras</span> </button>
+          <div class="w-8 h-0.5 bg-baby-pink"></div>
+          <button onclick="goToStep(4)" class="step-indicator flex items-center space-x-2 px-3 py-2 rounded-full transition-all" data-step="4"> <span class="w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold">4</span> <span class="hidden md:inline text-sm">Resumen</span> </button>
+        </div>
+      </div>
+
+      <section id="step-1" class="step-content glass-card rounded-3xl p-6 md:p-8 mb-6 shadow-xl">
+        <h2 class="text-2xl font-semibold text-deep-pink mb-6 flex items-center"><span class="w-10 h-10 bg-glam-pink text-white rounded-full flex items-center justify-center mr-3 text-lg">💅🏻</span> Selecciona tu Técnica</h2>
+        
+        <div class="grid gap-4" id="techniques-container">
+          </div>
+                  <div id="largo-selector" class="hidden mt-6 p-4 bg-soft-pink rounded-2xl">
+          <h3 class="font-semibold text-deep-pink mb-3">Selecciona el largo:</h3>
+          <div class="flex flex-wrap gap-3">
+            <button onclick="selectLargo(3)" class="largo-btn px-4 py-2 rounded-full border-2 border-rose-gold hover:bg-baby-pink transition-all" data-largo="3"> Largo Nº3 </button>
+            <button onclick="selectLargo(4)" class="largo-btn px-4 py-2 rounded-full border-2 border-rose-gold hover:bg-baby-pink transition-all" data-largo="4"> Largo Nº4 (+$1,500) </button>
+            <button onclick="selectLargo(5)" class="largo-btn px-4 py-2 rounded-full border-2 border-rose-gold hover:bg-baby-pink transition-all" data-largo="5"> Largo Nº5 (+$3,000) </button>
+            <button onclick="selectLargo(6)" class="largo-btn px-4 py-2 rounded-full border-2 border-rose-gold hover:bg-baby-pink transition-all" data-largo="6"> Largo Nº6 (+$4,500) </button>
+          </div>
+        </div>
+
+    <button onclick="toggleCombos()" class="w-full flex justify-between items-center mt-8 mb-4 p-4 bg-glam-pink rounded-2xl hover:opacity-90 transition-all shadow-md">
+          <h3 class="text-xl font-semibold text-white flex items-center">
+            <span class="mr-2">🎀</span> Combos Manos y Pies
+          </h3>
+          <span id="combo-icon" class="text-white text-xl transition-transform duration-300">👇🏻</span>
+        </button>
+        
+        <div class="grid gap-4 hidden" id="combos-container">
+          </div>
+
+
+        
+        <div class="flex justify-end mt-6">
+          <button onclick="goToStep(2)" class="btn-glam text-white px-8 py-3 rounded-full font-semibold shadow-lg"> Siguiente → </button>
+        </div>
+      </section>
+
+      <section id="step-2" class="step-content hidden glass-card rounded-3xl p-6 md:p-8 mb-6 shadow-xl">
+        <h2 class="text-2xl font-semibold text-deep-pink mb-2 flex items-center"><span class="w-10 h-10 bg-glam-pink text-white rounded-full flex items-center justify-center mr-3 text-lg">✨</span> Decoraciones (Extras)</h2>
+        <p class="text-sm text-deep-pink/70 mb-6">Cualquier técnica incluye 2 diseños a elección. Selecciona cuántas uñas deseas con cada decoración.</p>
+        
+        <div class="mb-6 p-4 bg-gradient-to-r from-baby-pink/50 to-soft-pink rounded-2xl">
+          <div class="flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <p class="font-semibold text-deep-pink">🎉 ¡Promoción!</p>
+              <p class="text-sm text-deep-pink/70">15% de descuento al elegir todas las uñas en una decoración</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="decoration-grid" id="decorations-container">
+          </div>
+        
+        <div class="flex justify-between mt-6">
+          <button onclick="goToStep(1)" class="px-6 py-3 rounded-full font-semibold border-2 border-rose-gold text-deep-pink hover:bg-baby-pink transition-all"> ← Anterior </button>
+          <button onclick="goToStep(3)" class="btn-glam text-white px-8 py-3 rounded-full font-semibold shadow-lg"> Siguiente → </button>
+        </div>
+      </section>
+
+      <section id="step-3" class="step-content hidden glass-card rounded-3xl p-6 md:p-8 mb-6 shadow-xl">
+        <h2 class="text-2xl font-semibold text-deep-pink mb-6 flex items-center"><span class="w-10 h-10 bg-glam-pink text-white rounded-full flex items-center justify-center mr-3 text-lg">💎</span> Servicios Adicionales</h2>
+        
+        <div class="mb-6">
+  <button type="button" class="btn-retirado w-full bg-[#ff7ba3] text-white font-semibold py-3 px-4 rounded-xl flex justify-between items-center mb-3 shadow-sm">
+    <span class="flex items-center"><span class="mr-2">🏪</span> Retirado de otro salón</span>
+    <span class="icono-mano transform transition-transform duration-300 text-lg">👇🏻</span>
+  </button>
+  
+  <div class="contenido-retirado grid gap-2 max-h-0 overflow-hidden transition-all duration-300 ease-in-out" id="retirado-otro-container"></div>
+</div>
+
+<div class="mb-6">
+  <button type="button" class="btn-retirado w-full bg-[#ff7ba3] text-white font-semibold py-3 px-4 rounded-xl flex justify-between items-center mb-3 shadow-sm">
+    <span class="flex items-center"><span class="mr-2">🏡</span> Retirado propio (AchuNails)</span>
+    <span class="icono-mano transform transition-transform duration-300 text-lg">👇🏻</span>
+  </button>
+  
+  <div class="contenido-retirado grid gap-2 max-h-0 overflow-hidden transition-all duration-300 ease-in-out" id="retirado-propio-container"></div>
+</div>
+        <div class="mb-6">
+          <h3 class="font-semibold text-deep-pink mb-3 flex items-center"><span class="mr-2">🔧</span> Arreglo por uña</h3>
+          <div class="space-y-3" id="arreglo-container"></div>
+        </div>
+        
+        <div class="flex justify-between mt-6">
+          <button onclick="goToStep(2)" class="px-6 py-3 rounded-full font-semibold border-2 border-rose-gold text-deep-pink hover:bg-baby-pink transition-all"> ← Anterior </button>
+          <button onclick="goToStep(4)" class="btn-glam text-white px-8 py-3 rounded-full font-semibold shadow-lg"> Ver Resumen → </button>
+        </div>
+      </section>
+
+      <section id="step-4" class="step-content hidden glass-card rounded-3xl p-6 md:p-8 mb-6 shadow-xl">
+        <h2 class="text-2xl font-semibold text-deep-pink mb-6 flex items-center"><span class="w-10 h-10 bg-glam-pink text-white rounded-full flex items-center justify-center mr-3 text-lg">📋</span> Resumen de tu Servicio</h2>
+        <div id="summary-content" class="space-y-4"></div>
+        
+        <div class="mt-8 p-6 bg-gradient-to-r from-glam-pink to-rose-gold rounded-2xl text-white">
+          <div class="flex justify-between items-center">
+            <span class="text-xl font-semibold">Total Final:</span>
+            <span id="total-price" class="text-3xl font-bold">$0</span>
+          </div>
+        </div>
+        
+        <div class="border-t border-pink-100 pt-5 mt-6 mb-3 text-center">
+          <h3 class="font-semibold text-[#ff7ba3] text-sm">💳 Método de Pago</h3>
+        </div>
+        
+        <div class="flex gap-4 mb-8">
+          <button type="button" id="btn-efectivo" onclick="seleccionarPago('Efectivo')" class="flex-1 bg-white text-[#ff7ba3] border-2 border-[#ff7ba3] font-semibold py-3 rounded-xl shadow-sm transition-all cursor-pointer">
+            💵 Efectivo
+          </button>
+          <button type="button" id="btn-transferencia" onclick="seleccionarPago('Transferencia')" class="flex-1 bg-white text-[#ff7ba3] border-2 border-[#ff7ba3] font-semibold py-3 rounded-xl shadow-sm transition-all cursor-pointer">
+            📱 Transferencia
+          </button>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-3">
+          <button onclick="shareAsImage()" class="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-6 py-3 rounded-full font-semibold shadow-lg transition-all flex items-center gap-2"> 📸 Compartir Resumen </button>
+          <button onclick="goToStep(3)" class="px-6 py-3 rounded-full font-semibold border-2 border-rose-gold text-deep-pink hover:bg-baby-pink transition-all"> ← Anterior </button>
+        <button onclick="registrarServicio()" class="btn-glam text-white px-8 py-3 rounded-full font-semibold shadow-lg"> ✅ Registrar servicio </button>
+        </div>
+
+        <div id="summary-image-export" class="hidden">
+          <img src="../img/achunailslogo2.png" alt="Logo AchuNails" style="height: 60px; margin: 0 auto; display: block; margin-bottom: 15px; border-radius: 50%;">
+          <h1 id="export-salon-name">AchuNails</h1>
+          <p id="export-tagline"> 🌸Hecho a medida para brindar belleza con precisión🌸 </p>
+          <div id="export-items" class="mb-4"></div>
+
+          <div class="export-item" id="export-payment-info" style="border-top: 1px dashed #FF85A1; border-bottom: none; font-size: 0.95rem; margin-top: 0;">
+            <span style="color: #C9929A;">💳 Método de Pago:</span> <span id="export-payment-method-text" style="color: #FF85A1; font-weight: bold;">-</span>
+          </div>
+
+          <div class="export-item" id="export-total">
+            <span>Total Final:</span> <span id="export-total-price">$0</span>
+          </div>
+          <p style="text-align: center; color: #FF85A1; font-size: 0.75rem; margin-top: 1.5rem;">Gracias por confiar en mi trabajo 💖</p>
+          <p style="text-align: center; color: #FF85A1; font-size: 0.85rem; margin-top: 0.50rem;">✨ Tu tiempo y tus manos están en buenas manos ✨</p>
+        </div>
+      </section>
+
+      <footer class="text-center text-deep-pink/60 text-sm mt-8 pb-4">
+        <p>💕 Achu Nails - Sistema de cálculo y gestión de servicios desarrollado para optimizar cada detalle ✨</p>
+      </footer>
+
+    </div>
+  </div>
+
+  <script src="../js/app.js"></script>
+  <script>
+
+  const botonesRetirado = document.querySelectorAll('.btn-retirado');
+
+  botonesRetirado.forEach(boton => {
+    boton.addEventListener('click', function() {
+      const contenido = this.nextElementSibling;
+      const icono = this.querySelector('.icono-mano');
+
+      // Alternamos el giro del icono (Tailwind hace el resto con 'rotate-180')
+      icono.classList.toggle('rotate-180');
+      if (contenido.style.maxHeight) {
+        contenido.style.maxHeight = null;
+      } else {
+        contenido.style.maxHeight = contenido.scrollHeight + "px";
+      }
+    });
+    
+  });
+  // --- Lógica del Menú Lateral Súper Fluido ---
+    function abrirMenuLateral() {
+        const menu = document.getElementById('menu-lateral');
+        const overlay = document.getElementById('menu-overlay');
+        
+        // 1. Quitamos el hidden para que exista en la pantalla
+        overlay.classList.remove('hidden');
+        
+        // 2. Le damos un respiro al navegador para que pinte el elemento antes de animar
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                overlay.classList.remove('opacity-0');
+                menu.classList.remove('-translate-x-full');
+            });
+        });
+    }
+
+    function cerrarMenuLateral() {
+        const menu = document.getElementById('menu-lateral');
+        const overlay = document.getElementById('menu-overlay');
+        
+        // 1. Iniciamos las animaciones de salida
+        menu.classList.add('-translate-x-full');
+        overlay.classList.add('opacity-0');
+        
+        // 2. Esperamos a que termine (300ms) para volver a ocultarlo del todo
+        setTimeout(() => {
+            overlay.classList.add('hidden');
+        }, 300);
+    }
+</script>
+<div id="menu-overlay" onclick="cerrarMenuLateral()" class="fixed inset-0 bg-black/60 z-40 hidden opacity-0 transition-opacity duration-300"></div>
+  <aside id="menu-lateral" class="fixed top-0 left-0 h-full w-64 bg-white z-50 transform -translate-x-full transition-transform duration-300 shadow-2xl flex flex-col">
+    
+    <div class="p-5 border-b border-baby-pink flex justify-between items-center bg-soft-pink/30">
+        <span class="font-['Quicksand'] font-bold text-glam-pink text-xl">Menú Principal</span>
+        <button onclick="cerrarMenuLateral()" class="text-3xl text-deep-pink focus:outline-none hover:scale-110 transition-transform">&times;</button>
+    </div>
+    
+    <nav class="p-4 flex flex-col gap-3 flex-1 mt-2">
+        <a href="dashboard.html" class="flex items-center gap-4 text-deep-pink hover:bg-baby-pink/40 p-3 rounded-xl transition-colors font-medium">
+            <span class="text-2xl">📊</span> Métricas
+        </a>
+        <a href="historial.html" class="flex items-center gap-4 text-deep-pink hover:bg-baby-pink/40 p-3 rounded-xl transition-colors font-medium">
+            <span class="text-2xl">📋</span> Historial
+        </a>
+    </nav>
+    
+    <div class="p-5 border-t border-baby-pink">
+        <a href="../index.html" class="flex items-center gap-4 text-red-500 hover:bg-red-50 p-3 rounded-xl transition-colors font-medium">
+            <span class="text-2xl">🚪</span> Cerrar Sesión
+        </a>
+    </div>
+  </aside>
+</body>
+</html>

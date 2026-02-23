@@ -493,8 +493,7 @@ async function registrarServicio() {
 
   try {
 
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxozs243V7Z2fPm6KF_5J4gFunyf1uSErb5mNiqr3l0NPFZRrz4WZ_o6qNa_kWIkD-z/exec';
-
+  const scriptURL = '../api/guardar_venta.php';
     await fetch(scriptURL, {
       method: 'POST',
       body: JSON.stringify(datos),
