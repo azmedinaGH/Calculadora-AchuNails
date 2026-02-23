@@ -28,20 +28,20 @@ const combos = [
 
 // Decoraciones disponibles (precio por uña)
 const decorations = [
-    { id: 'francesitas', name: 'Francesitas', price: 500, emoji: '🤍' },
+    { id: 'francesitas', name: 'Francesitas', price: 200, emoji: '🤍' },
   { id: 'espejo', name: 'Espejo', price: 500, emoji: '🪞' },
   { id: 'aurora', name: 'Aura', price: 500, emoji: '🌈' },
   { id: 'perla', name: 'Perlado', price: 500, emoji: '🦪' },
-    { id: 'baby-boomer', name: 'Baby Boomer', price: 1000, emoji: '🧚🏻‍♀️' },
+    { id: 'baby-boomer', name: 'Baby Boomer', price: 500, emoji: '🧚🏻‍♀️' },
+    { id: 'strass', name: 'Strass', price: 400, emoji: '💎' },
   { id: 'carey', name: 'Carey', price: 1000, emoji: '🐆' },
-  { id: 'blooming', name: 'Blooming', price: 500, emoji: '🌸' },
-  { id: 'ojo-gato', name: 'Ojo de Gato', price: 500, emoji: '🐱' },
+  { id: 'blooming', name: 'Blooming', price: 200, emoji: '🌸' },
   { id: 'relieve', name: 'Relieve', price: 500, emoji: '🏔️' },
-  { id: 'nail-art-simple', name: 'Nail Art Simple', price: 500, emoji: '🎨' },
+  { id: 'nail-art-simple', name: 'Nail Art Simple', price: 300, emoji: '🎨' },
   { id: 'nail-art-complejo', name: 'Nail Art Complicado', price: 1000, emoji: '🖼️' },
-    { id: '3d', name: '3D', price: 1000, emoji: '💎' },
+    { id: '3d', name: '3D', price: 1000, emoji: '💮' },
   { id: 'encapsulado', name: 'Encapsulado', price: 500, emoji: '💐' },
-  { id: 'dijes', name: 'Dijes', price: 1000, emoji: '📿' },
+
 
 ];
 
