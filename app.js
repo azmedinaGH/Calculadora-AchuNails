@@ -66,7 +66,6 @@ const arreglos = [
 ];
 
 // Estado de la calculadora
-// Estado de la calculadora
 let state = {
   selectedTechnique: null,
   selectedLargo: 3,
@@ -87,7 +86,7 @@ function formatPrice(price) {
 
 function renderTechniques() {
   const container = document.getElementById('techniques-container');
-  if(!container) return; // Prevención de errores si el HTML no está listo
+  if(!container) return;
   container.innerHTML = techniques.map(tech => `
     <div onclick="selectTechnique('${tech.id}')" 
          class="technique-card cursor-pointer p-4 rounded-2xl border-2 border-baby-pink hover:border-glam-pink transition-all ${state.selectedTechnique === tech.id ? 'selected-card' : 'bg-white/50'}"
@@ -105,7 +104,7 @@ function renderTechniques() {
 
 function renderCombos() {
   const container = document.getElementById('combos-container');
-  if(!container) return; // Si no pusiste el HTML de combos, no rompe la página
+  if(!container) return; 
   container.innerHTML = combos.map(combo => `
     <div onclick="selectTechnique('${combo.id}')" 
          class="technique-card cursor-pointer p-4 rounded-2xl border-2 border-baby-pink hover:border-glam-pink transition-all ${state.selectedTechnique === combo.id ? 'selected-card' : 'bg-white/50'}"
@@ -405,7 +404,6 @@ function resetCalculator() {
     arregloCounts: { 'arreglo-soft': 0, 'arreglo-esc': 0 },
     paymentMethod: null
   };
-  // Limpiamos los botones de pago visualmente
   const btnEfectivo = document.getElementById('btn-efectivo');
   const btnTransferencia = document.getElementById('btn-transferencia');
   if(btnEfectivo && btnTransferencia) {
@@ -432,12 +430,12 @@ function seleccionarPago(metodo) {
   const btnEfectivo = document.getElementById('btn-efectivo');
   const btnTransferencia = document.getElementById('btn-transferencia');
 
-  // Clases por defecto (botones desmarcados)
+  // (botones desmarcados)
   const defaultClass = "flex-1 bg-white text-[#ff7ba3] border-2 border-[#ff7ba3] font-semibold py-3 rounded-xl shadow-sm transition-all cursor-pointer";
   btnEfectivo.className = defaultClass;
   btnTransferencia.className = defaultClass;
 
-  // Clase activa (botón pintado de rosa)
+  // (botón pintado de rosa)
   const activeClass = "flex-1 bg-[#ff7ba3] text-white font-semibold py-3 rounded-xl shadow-sm transition-all cursor-pointer";
 
   if (metodo === 'Efectivo') {
@@ -452,12 +450,10 @@ function toggleCombos() {
   const container = document.getElementById('combos-container');
   const icon = document.getElementById('combo-icon');
   
-  // Si tiene la clase 'hidden', se la quitamos para mostrarlo y giramos la flecha
   if (container.classList.contains('hidden')) {
     container.classList.remove('hidden');
     icon.style.transform = 'rotate(180deg)';
   } 
-  // Si no la tiene, se la agregamos para ocultarlo y volvemos la flecha a la normalidad
   else {
     container.classList.add('hidden');
     icon.style.transform = 'rotate(0deg)';
@@ -480,7 +476,6 @@ async function registrarServicio() {
     return;
   }
 
-  // Juntamos todos los servicios elegidos en un solo texto
   const detalleServicios = items.map(item => item.name).join(' + ');
 
   // Armamos el paquetito de datos para enviar
@@ -490,33 +485,29 @@ async function registrarServicio() {
     precio: total
   };
 
-  // Cambiamos el texto del botón para que sepas que está cargando
+
   const botonGuardar = document.querySelector('button[onclick="registrarServicio()"]');
   const textoOriginal = botonGuardar.innerHTML;
   botonGuardar.innerHTML = '⏳ Guardando...';
   botonGuardar.disabled = true;
 
   try {
-    // REEMPLAZA ESTO CON LA URL QUE TE DIO GOOGLE APPS SCRIPT
+
     const scriptURL = 'https://script.google.com/macros/s/AKfycbxozs243V7Z2fPm6KF_5J4gFunyf1uSErb5mNiqr3l0NPFZRrz4WZ_o6qNa_kWIkD-z/exec';
 
     await fetch(scriptURL, {
       method: 'POST',
       body: JSON.stringify(datos),
-      // Usamos text/plain para evitar bloqueos de seguridad del navegador
       headers: { 'Content-Type': 'text/plain;charset=utf-8' }
     });
 
     alert('¡Servicio registrado con éxito en tu planilla!');
-    
-    // Reiniciamos la calculadora para la siguiente clienta
     resetCalculator();
 
   } catch (error) {
     console.error('Error al guardar:', error);
     alert('Hubo un error al guardar. Revisa tu conexión.');
   } finally {
-    // Volvemos el botón a la normalidad
     botonGuardar.innerHTML = textoOriginal;
     botonGuardar.disabled = false;
   }
@@ -533,7 +524,6 @@ async function shareAsImage() {
     return;
   }
 
-  // VALIDACIÓN: Exige método de pago
   if (!state.paymentMethod) {
     alert('Por favor selecciona el Método de Pago (Efectivo o Transferencia) antes de compartir el resumen.');
     return;

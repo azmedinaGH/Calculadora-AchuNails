@@ -67,6 +67,7 @@ input[type="number"]::-webkit-outer-spin-button {
     padding: 0.25rem 0.5rem; 
   }
 }
+
 #summary-image-export {
   background: white;
   padding: 2rem;

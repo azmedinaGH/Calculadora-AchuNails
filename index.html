@@ -196,25 +196,19 @@
 
   <script src="app.js"></script>
   <script>
-  // Seleccionamos todos los botones nuevos de retirado
+
   const botonesRetirado = document.querySelectorAll('.btn-retirado');
 
   botonesRetirado.forEach(boton => {
     boton.addEventListener('click', function() {
-      // Buscamos el div contenedor que le sigue al botón
       const contenido = this.nextElementSibling;
-      // Buscamos el emoji de la mano dentro de este botón
       const icono = this.querySelector('.icono-mano');
 
       // Alternamos el giro del icono (Tailwind hace el resto con 'rotate-180')
       icono.classList.toggle('rotate-180');
-
-      // Alternamos la altura máxima para que se anime
       if (contenido.style.maxHeight) {
-        // Si está abierto, lo cerramos
         contenido.style.maxHeight = null;
       } else {
-        // Si está cerrado, calculamos cuánto mide su contenido y lo abrimos
         contenido.style.maxHeight = contenido.scrollHeight + "px";
       }
     });
